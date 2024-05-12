@@ -1,5 +1,6 @@
 package ru.job4j.cinema.service;
 
+import ru.job4j.cinema.dto.FilmPreview;
 import ru.job4j.cinema.model.Film;
 
 import java.util.Collection;
@@ -15,4 +16,6 @@ public interface FilmService {
     Optional<Film> findById(int id);
 
     Collection<Film> findAll();
+
+    Collection<FilmPreview> findAllFilmPreview();
 }

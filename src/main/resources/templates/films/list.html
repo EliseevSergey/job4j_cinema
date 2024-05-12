@@ -29,23 +29,21 @@
                 <th scope="col">Год</th>
                 <th scope="col">Аудитория</th>
                 <th scope="col">Длительность</th>
-                <th scope="col">Жанр</th>
                 <th scope="col">ЖанрТекст</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="film: ${films}">
-                <td th:text="${film.id}"/>
+            <tr th:each="preview: ${previews}">
+                <td th:text="${preview.id}"/>
                 <td>
-                    <a th:text="${film.name}" th:href="@{/films/{filmId}(filmId=${film.id})}"></a></td>
+                    <a th:text="${preview.name}" th:href="@{/films/{previewId}(previewId=${preview.id})}"></a></td>
                 <td>
-                    <img th:src="@{/files/{fileId}(fileId=${film.fileId})}+.png" width="100" alt="No image">
+                    <img th:src="@{/files/{fileId}(fileId=${preview.fileId})}+.png" width="100" alt="No image">
                 </td>
-                <td th:text="${film.year}"/>
-                <td th:text="${film.minAge}"/>
-                <td th:text="${film.duration}"/>
-                <td th:text="${film.genreId}"/>
-                <td th:text="${film.genreId}"/>
+                <td th:text="${preview.year}"/>
+                <td th:text="${preview.minAge}"/>
+                <td th:text="${preview.duration}"/>
+                <td th:text="${preview.genre}"/>
             </tr>
             </tbody>
         </table>
