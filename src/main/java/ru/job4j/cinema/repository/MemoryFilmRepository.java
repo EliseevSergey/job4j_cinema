@@ -15,8 +15,9 @@ public class MemoryFilmRepository implements FilmRepository {
     private final Map<Integer, Film> films = new HashMap<>();
 
     public MemoryFilmRepository() {
-        save(new Film(0, "Godzilla", "description", 2000, 2, 16, 120, 0));
-        save(new Film(0, "Rambo", "description", 1999, 3, 21, 110, 1));
+        save(new Film(0, "Godzilla", "description", 2000, 0, 16, 120, 0));
+        save(new Film(1, "Rambo", "description", 1999, 1, 21, 110, 1));
+        save(new Film(2, "Matrix", "description", 2008, 2, 16, 130, 2));
     }
 
     public MemoryFilmRepository getInstance() {
@@ -25,7 +26,7 @@ public class MemoryFilmRepository implements FilmRepository {
 
     @Override
     public Film save(Film film) {
-        return null;
+        return films.putIfAbsent(film.getId(), film);
     }
 
     @Override
