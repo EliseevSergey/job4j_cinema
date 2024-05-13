@@ -23,7 +23,7 @@ create table films
     file_id             int references files (id)  not null
 );
 
-create table halls
+create table hall
 (
     id          serial primary key,
     name        varchar not null,
@@ -36,7 +36,7 @@ create table film_sessions
 (
     id         serial primary key,
     film_id    int references films (id) not null,
-    halls_id   int references halls (id) not null,
+    halls_id   int references hall (id) not null,
     start_time timestamp                 not null,
     end_time   timestamp                 not null,
     price      int                       not null

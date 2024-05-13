@@ -3,7 +3,7 @@ package ru.job4j.cinema.model;
 import java.util.Map;
 import java.util.Objects;
 
-public class Halls {
+public class Hall {
     private int id;
     private String name;
     private int rowCount;
@@ -18,10 +18,10 @@ public class Halls {
             "description", "description"
     );
 
-    public Halls() {
+    public Hall() {
     }
 
-    public Halls(int id, String name, int rowCount, int placeCount, String description) {
+    public Hall(int id, String name, int rowCount, int placeCount, String description) {
         this.id = id;
         this.name = name;
         this.rowCount = rowCount;
@@ -77,8 +77,8 @@ public class Halls {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Halls halls = (Halls) o;
-        return id == halls.id;
+        Hall hall = (Hall) o;
+        return id == hall.id;
     }
 
     @Override
