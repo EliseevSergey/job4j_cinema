@@ -41,7 +41,7 @@ public class MemoryFilmRepository implements FilmRepository {
 
     @Override
     public Optional<Film> findById(int id) {
-        return Optional.empty();
+        return Optional.of(films.get(id));
     }
 
     @Override

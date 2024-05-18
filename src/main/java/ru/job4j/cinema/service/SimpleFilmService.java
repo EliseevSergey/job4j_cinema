@@ -1,7 +1,7 @@
 package ru.job4j.cinema.service;
 
 import org.springframework.stereotype.Service;
-import ru.job4j.cinema.dto.FilmPreview;
+import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
 import ru.job4j.cinema.repository.FilmRepository;
 import ru.job4j.cinema.repository.GenreRepository;
@@ -40,9 +40,9 @@ public class SimpleFilmService implements FilmService {
         return Optional.empty();
     }
 
-    public Collection<FilmPreview> findAllFilmPreview() {
-        return filmRepository.findAll().stream().map((film) ->  new FilmPreview(film.getId(), film.getName(),
-                film.getDescription(), film.getYear(), film.getMinAge(), film.getDuration(),
-                genreRepository.findById(film.getGenreId()).getName(), film.getFileId())).collect(Collectors.toList());
+    public Collection<FilmDto> findAllFilmDto() {
+        return filmRepository.findAll().stream().map((f) ->  new FilmDto(f.getId(), f.getName(),
+                f.getDescription(), f.getYear(), f.getMinAge(), f.getDuration(),
+                genreRepository.findById(f.getGenreId()).getName(), f.getFileId())).collect(Collectors.toList());
     }
 }

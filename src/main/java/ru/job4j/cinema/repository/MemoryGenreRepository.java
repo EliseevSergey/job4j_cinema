@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Repository
-public class MemoryGenreRepository implements GenreRepository{
+public class MemoryGenreRepository implements GenreRepository {
     private final Map<Integer, Genre> genres = new HashMap<>();
 
-    public MemoryGenreRepository(){
+    public MemoryGenreRepository() {
         genres.put(0, new Genre(0, "Фентази"));
         genres.put(1, new Genre(1, "Боевик"));
         genres.put(2, new Genre(2, "Фантастика"));
