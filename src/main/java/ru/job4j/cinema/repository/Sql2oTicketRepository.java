@@ -52,7 +52,9 @@ public class Sql2oTicketRepository implements TicketRepository {
                     """;
             Query query = connection.createQuery(sql)
                     .addParameter("id", id);
-            Optional<Ticket> ticket = Optional.of(query.executeAndFetchFirst(Ticket.class));
+            Optional<Ticket> ticket = Optional.ofNullable(query.setColumnMappings(Ticket.COLUMN_MAPPING)
+                    .executeAndFetchFirst(Ticket.class));
             return ticket;
         }
     }
+}
