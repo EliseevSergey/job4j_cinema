@@ -37,7 +37,14 @@ public class SimpleFilmService implements FilmService {
 
     @Override
     public Optional<Film> findById(int id) {
-        return Optional.empty();
+        return filmRepository.findById(id);
+    }
+
+    public FilmDto findByIdDto(int id) {
+        Film film = filmRepository.findById(id).get();
+        return new FilmDto(film.getId(), film.getName(),
+                film.getDescription(), film.getYear(), film.getMinAge(), film.getDuration(),
+                genreRepository.findById(film.getGenreId()).getName(), film.getFileId());
     }
 
     public Collection<FilmDto> findAllFilmDto() {
