@@ -7,9 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Ticket;
-
 import java.util.Optional;
-
 import org.sql2o.Sql2o;
 
 @Repository
@@ -24,7 +22,7 @@ public class Sql2oTicketRepository implements TicketRepository {
     }
 
     @Override
-    public Optional<Ticket> buy(Ticket ticket) {
+    public Optional<Ticket> save(Ticket ticket) {
         try (Connection connection = sql2o.open()) {
             var sql = """
                     INSERT INTO tickets (session_id, row_number, place_number, user_id)

@@ -1,6 +1,5 @@
 package ru.job4j.cinema.model;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class SessionDto {
     private int id;
+    private int filmId;
     private String filmName;
     private String hallName;
     private int minAge;
@@ -12,8 +13,9 @@ public class SessionDto {
     private LocalDateTime endTime;
     private int price;
 
-    public SessionDto(int id, String filmName, String hallName, int minAge, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public SessionDto(int id, int filmId, String filmName, String hallName, int minAge, LocalDateTime startTime, LocalDateTime endTime, int price) {
         this.id = id;
+        this.filmId = filmId;
         this.filmName = filmName;
         this.hallName = hallName;
         this.minAge = minAge;
@@ -28,6 +30,14 @@ public class SessionDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getFilmId() {
+        return filmId;
+    }
+
+    public void setFilmId(int filmId) {
+        this.filmId = filmId;
     }
 
     public String getFilmName() {

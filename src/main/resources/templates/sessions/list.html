@@ -30,18 +30,22 @@
         <th scope="col">Начало</th>
         <th scope="col">Конец</th>
         <th scope="col">Цена</th>
+        <th scope="col">Купить Билет</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="event: ${sessions}">
         <td th:text="${event.id}"/>
         <td>
-          <a th:text="${event.filmName}" th:href="@{/films/{sessionId}(sessionId=${event.id})}"></a></td>
+          <a th:text="${event.filmName}" th:href="@{/films/{sessionId}(sessionId=${event.filmId})}"></a></td>
         <td th:text="${event.hallName}"/>
         <td th:text="${event.minAge}"/>
         <td th:text="${event.startTime}"/>
         <td th:text="${event.endTime}"/>
         <td th:text="${event.price}"/>
+        <td >
+          <a th:href="@{/tickets/{eventId}(eventId=${event.id})}">Купить билет</a>
+        </td>
       </tr>
       </tbody>
     </table>

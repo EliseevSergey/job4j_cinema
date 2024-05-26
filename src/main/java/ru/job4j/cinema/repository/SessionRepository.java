@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface SessionRepository {
     Collection<FilmSession> findAll();
+
+    FilmSession findById(int id);
 }
