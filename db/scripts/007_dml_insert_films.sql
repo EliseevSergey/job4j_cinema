@@ -1,0 +1,3 @@
+insert into films (id, name, description, year, genre_id, minimal_age, duration_in_minutes, file_id) values (0, 'Godzilla', 'description', 2000, 0, 16, 120, 0);
+insert into films (id, name, description, year, genre_id, minimal_age, duration_in_minutes, file_id) values (1, 'Rambo', 'description', 1999, 1, 21, 110, 1);
+insert into films (id, name, description, year, genre_id, minimal_age, duration_in_minutes, file_id) values (2, 'Matrix', 'description', 2008, 2, 16, 130, 2);

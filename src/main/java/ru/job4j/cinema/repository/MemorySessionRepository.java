@@ -29,10 +29,10 @@ public class MemorySessionRepository implements SessionRepository {
                 LocalDateTime.of(2024, 5, 14, 16, 0),
                 700
         ));
-        sessions.put(3, new FilmSession(2, 2, 3,
+        sessions.put(3, new FilmSession(3, 2, 3,
                 LocalDateTime.of(2024, 5, 15, 20, 0),
                 LocalDateTime.of(2024, 5, 15, 22, 0),
-                700
+                800
         ));
     }
 

@@ -10,11 +10,12 @@ public class Ticket {
     private int place;
     private int userId;
 
-    public static final Map<String, String> COLUMN_MAPPING = Map.of("id", "id",
-    "session_id", "sessionId",
-    "row_number", "row",
-    "place_number", "place",
-    "user_id", "userId");
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
+            "id", "id",
+            "session_id", "sessionId",
+            "row_number", "row",
+            "place_number", "place",
+            "user_id", "userId");
 
     public Ticket() {
     }
@@ -82,5 +83,16 @@ public class Ticket {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", sessionId=" + sessionId +
+                ", row=" + row +
+                ", place=" + place +
+                ", userId=" + userId +
+                '}';
     }
 }

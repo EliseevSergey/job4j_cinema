@@ -7,16 +7,19 @@ public class SessionDto {
     private int id;
     private int filmId;
     private String filmName;
+    private int hallId;
     private String hallName;
     private int minAge;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int price;
 
-    public SessionDto(int id, int filmId, String filmName, String hallName, int minAge, LocalDateTime startTime, LocalDateTime endTime, int price) {
+    public SessionDto(int id, int filmId, String filmName, int hallId, String hallName, int minAge, LocalDateTime startTime,
+                      LocalDateTime endTime, int price) {
         this.id = id;
         this.filmId = filmId;
         this.filmName = filmName;
+        this.hallId = hallId;
         this.hallName = hallName;
         this.minAge = minAge;
         this.startTime = startTime;
@@ -86,6 +89,14 @@ public class SessionDto {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(int hallId) {
+        this.hallId = hallId;
     }
 
     @Override
