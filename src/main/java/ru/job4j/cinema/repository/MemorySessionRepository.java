@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Repository
+//@Repository
 public class MemorySessionRepository implements SessionRepository {
     private Map<Integer, FilmSession> sessions = new HashMap<>();
 

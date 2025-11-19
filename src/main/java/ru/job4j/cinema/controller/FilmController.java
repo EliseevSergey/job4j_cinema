@@ -9,7 +9,11 @@ import ru.job4j.cinema.service.SimpleFilmService;
 @Controller
 @RequestMapping("/films")
 public class FilmController {
-    private final SimpleFilmService filmService = new SimpleFilmService();
+    private final SimpleFilmService filmService;
+
+    public FilmController(SimpleFilmService filmService) {
+        this.filmService = filmService;
+    }
 
     @GetMapping
     public String getAll(Model model) {

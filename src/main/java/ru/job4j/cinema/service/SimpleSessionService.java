@@ -11,9 +11,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class SimpleSessionService implements SessionService {
-    private final SessionRepository sessions = new MemorySessionRepository();
+    /*private final SessionRepository sessions = new MemorySessionRepository();
     private final HallRepository halls = new MemoryHallRepository();
-    private final FilmRepository films = new MemoryFilmRepository();
+    private final FilmRepository films = new MemoryFilmRepository();*/
+
+    private final SessionRepository sessions;
+    private final HallRepository halls;
+    private final FilmRepository films;
+
+    public SimpleSessionService(Sql2oHallRepository halls, Sql2oFilmRepository films, Sql2oSessionRepository sessions) {
+        this.halls = halls;
+        this.films = films;
+        this.sessions = sessions;
+    }
 
     @Override
     public Collection<FilmSession> findAll() {

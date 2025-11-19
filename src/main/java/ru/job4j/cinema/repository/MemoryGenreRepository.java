@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Repository
+//@Repository
 public class MemoryGenreRepository implements GenreRepository {
     private final Map<Integer, Genre> genres = new HashMap<>();
 

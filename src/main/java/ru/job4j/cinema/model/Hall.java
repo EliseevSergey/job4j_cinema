@@ -10,10 +10,10 @@ public class Hall {
     private int placeCount;
     private String description;
 
-    private static final Map<String, String> COLUMN_MAPPING = Map.of(
+    public static final Map<String, String> COLUMN_MAPPING = Map.of(
             "id", "id",
             "name", "name",
-             "row_count", "rowCount",
+            "row_count", "rowCount",
             "place_count", "placeCount",
             "description", "description"
     );

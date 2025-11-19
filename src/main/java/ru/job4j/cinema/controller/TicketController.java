@@ -21,27 +21,14 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    public String getPurchasePage(@ModelAttribute Ticket ticket, Model model, @PathVariable int id) {
+    public String getPurchasePage(Model model, @PathVariable int id) {
         SessionDto sessionDto = sessionService.findByIdSessionDto(id);
         model.addAttribute("event", sessionDto);
         model.addAttribute("hall", sessionService.findHallById(sessionDto.getHallId()));
         return "tickets/buy";
     }
 
-   /* @PostMapping("/buy")
-    public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
-        try {
-            System.out.println("-==!!!!!!!!!!=---" + ticket);
-            tickets.buy(ticket);
-            model.addAttribute("ticket", ticket);
-            return "redirect:/tickets/successful";
-        } catch (Exception exception) {
-            model.addAttribute("message", exception.getMessage());
-            return "errors/404";
-        }
-    }*/
-
-    @PostMapping("/buy")
+    /*@PostMapping("/buy")
     public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
         try {
             System.out.println("-==!!!!!!!!!!=---" + ticket);
@@ -52,17 +39,19 @@ public class TicketController {
             model.addAttribute("message", exception.getMessage());
             return "errors/404";
         }
-    }
-    /*@GetMapping("/successful")
-    public String boughtTicket(@ModelAttribute Ticket ticket, Model model) {
-        model.addAttribute("ticket", ticket);
-        return "/tickets/successful";
     }*/
 
-    /*@GetMapping("/successful")
-    public String boughtTicket(@ModelAttribute Ticket ticket, Model model) {
-        model.addAttribute("ticket", ticket);
-        return "/tickets/successful";
-    }*/
+    @PostMapping("/buy")
+    public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
+        var savedTicket = tickets.buy(ticket);
+        if (savedTicket.isEmpty()) {
+            model.addAttribute("message", "Не удалось приобрести билет на заданное место." +
+                    " Вероятно оно уже занято. Перейдите на страницу бронирования билетов и попробуйте снова");
+            return "errors/404";
+        } else {
+            model.addAttribute("ticket", ticket);
+            return "tickets/successful";
+        }
+    }
 }
 

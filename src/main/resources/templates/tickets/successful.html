@@ -19,10 +19,9 @@
 
 <p class="container">
 <div th:object="${ticket}">
+  <p>Вы успешно приобрели билет</p>
   <p>Ряд: <span th:text="*{row}"></span></p>
   <p>Место: <span th:text="*{place}"></span></p>
-  <p>Id билета: <span th:text="*{id}"></span></p>
-  <p>Id сессии: <span th:text="*{sessionId}"></span></p>
-  <p>Id юзера: <span th:text="*{userId}"></span></p>
+</div>
 </body>
 </html>

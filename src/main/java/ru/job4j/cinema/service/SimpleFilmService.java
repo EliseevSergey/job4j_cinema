@@ -3,18 +3,24 @@ package ru.job4j.cinema.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmDto;
 import ru.job4j.cinema.model.Film;
-import ru.job4j.cinema.repository.FilmRepository;
-import ru.job4j.cinema.repository.GenreRepository;
-import ru.job4j.cinema.repository.MemoryFilmRepository;
-import ru.job4j.cinema.repository.MemoryGenreRepository;
+import ru.job4j.cinema.repository.*;
+
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class SimpleFilmService implements FilmService {
-    private final FilmRepository filmRepository = new MemoryFilmRepository();
-    private final GenreRepository genreRepository = new MemoryGenreRepository();
+    /*private final FilmRepository filmRepository = new MemoryFilmRepository();
+    private final GenreRepository genreRepository = new MemoryGenreRepository();*/
+
+    private final FilmRepository filmRepository;
+    private final GenreRepository genreRepository;
+
+    public SimpleFilmService(FilmRepository Sql2oFilmRepository, GenreRepository Sql2oGenreRepository) {
+        this.filmRepository = Sql2oFilmRepository;
+        this.genreRepository = Sql2oGenreRepository;
+    }
 
     public Collection<Film> findAll() {
         return filmRepository.findAll();
