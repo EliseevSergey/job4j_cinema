@@ -28,25 +28,12 @@ public class TicketController {
         return "tickets/buy";
     }
 
-    /*@PostMapping("/buy")
-    public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
-        try {
-            System.out.println("-==!!!!!!!!!!=---" + ticket);
-            tickets.buy(ticket);
-            model.addAttribute("ticket", ticket);
-            return "tickets/successful";
-        } catch (Exception exception) {
-            model.addAttribute("message", exception.getMessage());
-            return "errors/404";
-        }
-    }*/
-
     @PostMapping("/buy")
     public String buyTicket(@ModelAttribute Ticket ticket, Model model) {
         var savedTicket = tickets.buy(ticket);
         if (savedTicket.isEmpty()) {
-            model.addAttribute("message", "Не удалось приобрести билет на заданное место." +
-                    " Вероятно оно уже занято. Перейдите на страницу бронирования билетов и попробуйте снова");
+            model.addAttribute("message", "Не удалось приобрести билет на заданное место."
+                    + " Вероятно оно уже занято. Перейдите на страницу бронирования билетов и попробуйте снова");
             return "errors/404";
         } else {
             model.addAttribute("ticket", ticket);

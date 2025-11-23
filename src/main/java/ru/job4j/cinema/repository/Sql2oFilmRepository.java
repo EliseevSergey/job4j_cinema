@@ -28,7 +28,13 @@ public class Sql2oFilmRepository implements FilmRepository {
 
     @Override
     public boolean deleteById(int id) {
-        return false;
+        try (Connection connection = sql2o.open()) {
+            var sql = """
+                    DELETE FROM films where id = :id
+                    """;
+            connection.createQuery(sql).addParameter("id", id).executeUpdate();
+            return connection.getResult() != 0;
+        }
     }
 
     @Override

@@ -85,15 +85,4 @@ public class Ticket {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", sessionId=" + sessionId +
-                ", row=" + row +
-                ", place=" + place +
-                ", userId=" + userId +
-                '}';
-    }
 }

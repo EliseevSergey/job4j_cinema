@@ -8,6 +8,7 @@ import java.util.Collection;
 
 public interface SessionService {
     Collection<FilmSession> findAll();
+    Collection<SessionDto> findAllSessionDto();
 
     //FilmSession findById(int id);
 

@@ -4,20 +4,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.job4j.cinema.service.SimpleSessionService;
+import ru.job4j.cinema.service.SessionService;
 
 @Controller
 @RequestMapping("/sessions")
 public class SessionController {
     //private final SimpleSessionService sessionService = new SimpleSessionService();
-    private final SimpleSessionService sessionService;
+    //private final SimpleSessionService sessionService;
+    private final SessionService sessionService;
 
-    public SessionController(SimpleSessionService sessionService) {
+    public SessionController(SessionService sessionService) {
         this.sessionService = sessionService;
     }
 
     @GetMapping
     public String findAllSessionDto(Model model) {
+        //model.addAttribute("sessions", sessionService.findAllSessionDto());
         model.addAttribute("sessions", sessionService.findAllSessionDto());
         return "sessions/list";
     }

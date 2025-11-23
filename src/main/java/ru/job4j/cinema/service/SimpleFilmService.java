@@ -17,9 +17,9 @@ public class SimpleFilmService implements FilmService {
     private final FilmRepository filmRepository;
     private final GenreRepository genreRepository;
 
-    public SimpleFilmService(FilmRepository Sql2oFilmRepository, GenreRepository Sql2oGenreRepository) {
-        this.filmRepository = Sql2oFilmRepository;
-        this.genreRepository = Sql2oGenreRepository;
+    public SimpleFilmService(FilmRepository sql2oFilmRepository, GenreRepository sql2oGenreRepository) {
+        this.filmRepository = sql2oFilmRepository;
+        this.genreRepository = sql2oGenreRepository;
     }
 
     public Collection<Film> findAll() {

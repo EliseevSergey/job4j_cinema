@@ -39,7 +39,6 @@ public class SimpleSessionService implements SessionService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public SessionDto findByIdSessionDto(int id) {
         FilmSession filmSession = sessions.findById(id);
