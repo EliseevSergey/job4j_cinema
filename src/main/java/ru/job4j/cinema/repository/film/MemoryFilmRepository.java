@@ -1,6 +1,5 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.film;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.cinema.model.Film;
 
 import java.util.Collection;

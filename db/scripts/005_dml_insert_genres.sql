@@ -1,3 +1,3 @@
-insert into genres (id, name) values (0, 'Фентази');
-insert into genres (id, name) values (1, 'Боевик');
-insert into genres (id, name) values (2, 'Фантастика');
+INSERT INTO genres (id, name) VALUES (0, 'Фентази');
+INSERT INTO genres (id, name) VALUES (1, 'Боевик');
+INSERT INTO genres (id, name) VALUES (2, 'Фантастика');

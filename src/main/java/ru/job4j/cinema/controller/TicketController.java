@@ -5,7 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.cinema.dto.SessionDto;
 import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.service.*;
+import ru.job4j.cinema.service.film.FilmService;
+import ru.job4j.cinema.service.session.SessionService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 @Controller
 @RequestMapping("/tickets")
@@ -34,11 +36,10 @@ public class TicketController {
         if (savedTicket.isEmpty()) {
             model.addAttribute("message", "Не удалось приобрести билет на заданное место."
                     + " Вероятно оно уже занято. Перейдите на страницу бронирования билетов и попробуйте снова");
-            return "errors/404";
-        } else {
-            model.addAttribute("ticket", ticket);
-            return "tickets/successful";
+            return "errors/409";
         }
+        model.addAttribute("ticket", ticket);
+        return "tickets/successful";
     }
 }
 

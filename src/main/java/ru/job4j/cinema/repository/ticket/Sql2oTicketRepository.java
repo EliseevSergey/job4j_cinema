@@ -1,4 +1,4 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.ticket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,8 +7,11 @@ import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.Ticket;
+
+import java.sql.SQLException;
 import java.util.Optional;
-import org.sql2o.Sql2o;
+
+import ru.job4j.cinema.repository.user.Sql2oUserRepository;
 
 @Repository
 public class Sql2oTicketRepository implements TicketRepository {
@@ -37,9 +40,26 @@ public class Sql2oTicketRepository implements TicketRepository {
             ticket.setId(generatedId);
             return Optional.of(ticket);
         } catch (Exception e) {
-            LOGGER.error("Error while ticket save in DB", e);
+            if (isPostgresUniqueConstraintViolation(e)) {
+                return Optional.empty();
+            } else {
+                throw new RuntimeException("Failed to save ticket: " + e.getMessage(), e);
+            }
         }
-        return Optional.empty();
+    }
+
+    private boolean isPostgresUniqueConstraintViolation(Exception e) {
+        Throwable cause = e;
+        while (cause != null) {
+            if (cause instanceof SQLException) {
+                SQLException sqlEx = (SQLException) cause;
+                if ("23505".equals(sqlEx.getSQLState())) {
+                    return true;
+                }
+            }
+            cause = cause.getCause();
+        }
+        return false;
     }
 
     @Override

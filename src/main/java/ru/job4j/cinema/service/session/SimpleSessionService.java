@@ -1,10 +1,15 @@
-package ru.job4j.cinema.service;
+package ru.job4j.cinema.service.session;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.SessionDto;
 import ru.job4j.cinema.model.FilmSession;
 import ru.job4j.cinema.model.Hall;
-import ru.job4j.cinema.repository.*;
+import ru.job4j.cinema.repository.film.FilmRepository;
+import ru.job4j.cinema.repository.film.Sql2oFilmRepository;
+import ru.job4j.cinema.repository.hall.HallRepository;
+import ru.job4j.cinema.repository.hall.Sql2oHallRepository;
+import ru.job4j.cinema.repository.session.SessionRepository;
+import ru.job4j.cinema.repository.session.Sql2oSessionRepository;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

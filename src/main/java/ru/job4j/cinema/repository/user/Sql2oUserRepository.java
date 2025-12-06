@@ -1,13 +1,16 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.user;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.sql2o.Connection;
 import org.sql2o.Query;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.model.User;
-
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Repository
@@ -36,9 +39,26 @@ public class Sql2oUserRepository implements UserRepository {
             user.setId(generatedId);
             return Optional.of(user);
         } catch (Exception e) {
-            LOGGER.error("Error while save(user) in DB", e);
+            if (isPostgresUniqueConstraintViolation(e)) {
+                return Optional.empty();
+            } else {
+                throw new RuntimeException("Failed to save user: " + e.getMessage(), e);
+            }
         }
-        return Optional.empty();
+    }
+
+    private boolean isPostgresUniqueConstraintViolation(Exception e) {
+        Throwable cause = e;
+        while (cause != null) {
+            if (cause instanceof SQLException) {
+                SQLException sqlEx = (SQLException) cause;
+                if ("23505".equals(sqlEx.getSQLState())) {
+                    return true;
+                }
+            }
+            cause = cause.getCause();
+        }
+        return false;
     }
 
     @Override
@@ -61,6 +81,12 @@ public class Sql2oUserRepository implements UserRepository {
             Query query = connection.createQuery(sql);
             query.executeUpdate();
         }
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public String exceptionHandler(RuntimeException ex, Model model) {
+        model.addAttribute("message", "Что-то пошло не так:" + ex.getMessage());
+        return "errors/404";
     }
 }
 

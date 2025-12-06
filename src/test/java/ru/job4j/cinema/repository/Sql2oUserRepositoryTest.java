@@ -2,17 +2,17 @@ package ru.job4j.cinema.repository;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.sql2o.Connection;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
-import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.repository.ticket.Sql2oTicketRepository;
+import ru.job4j.cinema.model.User;
+import ru.job4j.cinema.repository.user.Sql2oUserRepository;
 
+import java.util.Optional;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class Sql2oTicketRepositoryTest {
-    private static Sql2oTicketRepository sql2oTicketRepository;
+public class Sql2oUserRepositoryTest {
+    private static Sql2oUserRepository sql2oUserRepository;
 
     @BeforeAll
     public static void initRepository() throws Exception {
@@ -29,19 +29,21 @@ public class Sql2oTicketRepositoryTest {
         var datasource = configuration.connectionPool(url, username, password);
         var sql2o = configuration.databaseClient(datasource);
 
-        sql2oTicketRepository = new Sql2oTicketRepository(sql2o);
-
-        try (Connection connection = sql2o.open()) {
-            connection.createQuery("DELETE FROM tickets").executeUpdate();
-        }
+        sql2oUserRepository = new Sql2oUserRepository(sql2o);
     }
 
     @Test
-    public void whenSaveThanGetSame() {
-        Ticket ticket = new Ticket(1, 1, 1, 1, 1);
-        sql2oTicketRepository.save(ticket);
+    public void whenSaveUserThanGetSame() {
+        User user = new User(1, "mail@mail.ru", "user", "123");
+        sql2oUserRepository.save(user);
+        User actualUser = sql2oUserRepository.findByEmailAndPassword("mail@mail.ru", "123").get();
+        assertThat(actualUser).usingRecursiveComparison().isEqualTo(user);
+    }
 
-        var actualTicket = sql2oTicketRepository.findById(ticket.getId()).get();
-        assertThat(actualTicket).usingRecursiveComparison().isEqualTo(ticket);
+    @Test
+    public void whenSaveTheSameThenThrow() {
+        User user = new User(1, "mail@mail.ru", "user", "123");
+        User userWithSameMail = new User(1, "mail@mail.ru", "user", "123");
+        assertThat(sql2oUserRepository.save(userWithSameMail)).isEqualTo(Optional.empty());
     }
 }

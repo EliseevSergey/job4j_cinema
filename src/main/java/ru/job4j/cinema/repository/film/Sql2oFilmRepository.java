@@ -1,7 +1,5 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.film;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Query;
@@ -11,7 +9,6 @@ import ru.job4j.cinema.model.Film;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 public class Sql2oFilmRepository implements FilmRepository {

@@ -1,6 +1,5 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.session;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.cinema.model.FilmSession;
 
 import java.time.LocalDateTime;

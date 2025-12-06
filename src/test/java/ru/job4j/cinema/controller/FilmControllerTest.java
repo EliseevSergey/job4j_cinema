@@ -6,7 +6,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.ui.ConcurrentModel;
 import org.springframework.web.multipart.MultipartFile;
 import ru.job4j.cinema.dto.FilmDto;
-import ru.job4j.cinema.service.FilmService;
+import ru.job4j.cinema.service.film.FilmService;
 
 import java.util.Collection;
 import java.util.List;

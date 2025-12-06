@@ -1,9 +1,9 @@
-create table tickets
+CREATE TABLE tickets
 (
-    id           serial primary key,
-    session_id   int references film_sessions (id) not null,
-    row_number   int                               not null,
-    place_number int                               not null,
-    user_id      int                               not null,
-    unique (session_id, row_number, place_number)
+    id           SERIAL PRIMARY KEY,
+    session_id   INT REFERENCES film_sessions (id) NOT NULL,
+    row_number   INT                               NOT NULL,
+    place_number INT                               NOT NULL,
+    user_id      INT                               NOT NULL,
+    UNIQUE (session_id, row_number, place_number)
 );

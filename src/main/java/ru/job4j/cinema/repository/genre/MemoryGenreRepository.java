@@ -1,10 +1,8 @@
-package ru.job4j.cinema.repository;
+package ru.job4j.cinema.repository.genre;
 
-import org.springframework.stereotype.Repository;
 import ru.job4j.cinema.model.Genre;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 //@Repository
 public class MemoryGenreRepository implements GenreRepository {

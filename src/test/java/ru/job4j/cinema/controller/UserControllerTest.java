@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.service.UserService;
+import ru.job4j.cinema.service.user.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -42,7 +42,7 @@ public class UserControllerTest {
         ConcurrentModel model = new ConcurrentModel();
         String view = userController.register(model, user);
         Object actualExceptionalMsg = model.getAttribute("message");
-        assertThat(view).isEqualTo("errors/404");
+        assertThat(view).isEqualTo("errors/409");
         assertThat(actualExceptionalMsg).isEqualTo(expectedException.getMessage());
     }
 

@@ -7,9 +7,9 @@ import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.dto.SessionDto;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.service.FilmService;
-import ru.job4j.cinema.service.SessionService;
-import ru.job4j.cinema.service.TicketService;
+import ru.job4j.cinema.service.film.FilmService;
+import ru.job4j.cinema.service.session.SessionService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -74,7 +74,7 @@ public class TicketControllerTest {
         Ticket ticket1 = new Ticket(1, 1, 1, 1, 1);
         ConcurrentModel model = new ConcurrentModel();
         String view = ticketController.buyTicket(ticket1, model);
-        assertThat(view).isEqualTo("errors/404");
+        assertThat(view).isEqualTo("errors/409");
         Object actualExceptionMessage = model.getAttribute("message");
         assertThat(actualExceptionMessage).isEqualTo("Не удалось приобрести билет на заданное место."
                 + " Вероятно оно уже занято. Перейдите на страницу бронирования билетов и попробуйте снова");
